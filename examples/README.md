@@ -2,13 +2,12 @@
 
 The `ballerinax/cloudmersive.security` connector provides practical examples illustrating usage in various scenarios.
 
-[//]: # (TODO: Add examples)
-1. 
-2. 
+1. [Form input threat screening](./form_input_threat_screening/form_input_threat_screening.md) - Screen a submitted form field for injection and scripting attacks before storing it.
+2. [Network request vetting](./network_request_vetting/network_request_vetting.md) - Vet a client IP address and a callback URL before accepting a webhook registration.
 
 ## Prerequisites
 
-[//]: # (TODO: Add prerequisites)
+Obtain a Cloudmersive API key and provide it, together with the example's other values, in a `Config.toml` file in the example directory. See each example's document for details.
 
 ## Running an example
 
