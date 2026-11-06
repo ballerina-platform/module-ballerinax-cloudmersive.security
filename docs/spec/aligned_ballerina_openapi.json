@@ -1,0 +1,783 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "securityapi",
+        "description": "The security APIs help you detect and block security threats.",
+        "version": "v1"
+    },
+    "servers": [
+        {
+            "url": "https://api.cloudmersive.com/security/threat-detection"
+        }
+    ],
+    "paths": {
+        "/content/automatic/detect/string": {
+            "post": {
+                "tags": [
+                    "ContentThreatDetection"
+                ],
+                "summary": "Automatically detect threats in an input string",
+                "description": "Auto-detects a wide range of threat types in input string, including Cross-Site Scripting (XSS), SQL Injection (SQLI), XML External Entitites (XXE), Server-side Request Forgeries (SSRF), and JSON Insecure Deserialization (JID).",
+                "operationId": "detectThreats",
+                "requestBody": {
+                    "description": "User-facing text input",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Result of automatic threat detection on the input string",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AutomaticThreatDetectionResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AutomaticThreatDetectionResult"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AutomaticThreatDetectionResult"
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AutomaticThreatDetectionResult"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Apikey": []
+                    }
+                ],
+                "x-codegen-request-body-name": "value"
+            }
+        },
+        "/content/insecure-deserialization/json/detect/string": {
+            "post": {
+                "tags": [
+                    "ContentThreatDetection"
+                ],
+                "summary": "Detect Insecure Deserialization JSON (JID) attacks in a string",
+                "description": "Detects Insecure Deserialization JSON (JID) attacks from text input.",
+                "operationId": "detectInsecureDeserialization",
+                "requestBody": {
+                    "description": "User-facing text input",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Result of the insecure deserialization JSON check",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InsecureDeserializationResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InsecureDeserializationResult"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InsecureDeserializationResult"
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InsecureDeserializationResult"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Apikey": []
+                    }
+                ],
+                "x-codegen-request-body-name": "value"
+            }
+        },
+        "/content/sql-injection/detect/string": {
+            "post": {
+                "tags": [
+                    "ContentThreatDetection"
+                ],
+                "summary": "Check text input for SQL Injection (SQLI) attacks",
+                "description": "Detects SQL Injection (SQLI) attacks from text input.",
+                "operationId": "checkSqlInjection",
+                "requestBody": {
+                    "description": "User-facing text input",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Result of the SQL injection check",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SqlInjectionResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SqlInjectionResult"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SqlInjectionResult"
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SqlInjectionResult"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Apikey": []
+                    }
+                ],
+                "x-codegen-request-body-name": "value"
+            }
+        },
+        "/content/xss/detect/string": {
+            "post": {
+                "tags": [
+                    "ContentThreatDetection"
+                ],
+                "summary": "Protect text input from Cross-Site-Scripting (XSS) attacks through normalization",
+                "description": "Detects and removes XSS (Cross-Site-Scripting) attacks from text input through normalization.  Returns the normalized result, as well as information on whether the original input contained an XSS risk.",
+                "operationId": "protectXss",
+                "requestBody": {
+                    "description": "User-facing text input",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Result of the XSS protection, including the normalized text",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/XssProtectionResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/XssProtectionResult"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/XssProtectionResult"
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/XssProtectionResult"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Apikey": []
+                    }
+                ],
+                "x-codegen-request-body-name": "value"
+            }
+        },
+        "/content/xxe/detect/xml/string": {
+            "post": {
+                "tags": [
+                    "ContentThreatDetection"
+                ],
+                "summary": "Protect text input from XML External Entity (XXE) attacks",
+                "description": "Detects XXE (XML External Entity) attacks from XML text input.",
+                "operationId": "checkXxe",
+                "requestBody": {
+                    "description": "User-facing text input",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Result of the XXE threat check",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/XxeDetectionResult"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/XxeDetectionResult"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/XxeDetectionResult"
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/XxeDetectionResult"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Apikey": []
+                    }
+                ],
+                "x-codegen-request-body-name": "value"
+            }
+        },
+        "/network/url/ssrf/detect": {
+            "post": {
+                "tags": [
+                    "NetworkThreatDetection"
+                ],
+                "summary": "Check a URL for Server-side Request Forgery (SSRF) threats",
+                "description": "Checks if an input URL is at risk of being an SSRF (Server-side request forgery) threat or attack.",
+                "operationId": "detectSsrf",
+                "requestBody": {
+                    "description": "Input URL request",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SsrfDetectionRequest"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SsrfDetectionRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Result of the SSRF threat check on the URL",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SsrfDetectionResponse"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SsrfDetectionResponse"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SsrfDetectionResponse"
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SsrfDetectionResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Apikey": []
+                    }
+                ],
+                "x-codegen-request-body-name": "request"
+            }
+        },
+        "/network/ip/is-threat": {
+            "post": {
+                "tags": [
+                    "NetworkThreatDetection"
+                ],
+                "summary": "Check if IP address is a known threat",
+                "description": "Check if the input IP address is a known threat IP address.  Checks against known bad IPs, botnets, compromised servers, and other lists of threats.",
+                "operationId": "checkIpThreat",
+                "requestBody": {
+                    "description": "IP address to check, e.g. \"55.55.55.55\".  The input is a string so be sure to enclose it in double-quotes",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Result of the known-threat check on the IP address",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IpThreatResponse"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IpThreatResponse"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IpThreatResponse"
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IpThreatResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Apikey": []
+                    }
+                ],
+                "x-codegen-request-body-name": "value"
+            }
+        },
+        "/network/ip/is-bot": {
+            "post": {
+                "tags": [
+                    "NetworkThreatDetection"
+                ],
+                "summary": "Check if IP address is a Bot client threat",
+                "description": "Check if the input IP address is a Bot, robot, or otherwise a non-user entity.  Leverages real-time signals to check against known high-probability bots..",
+                "operationId": "checkIpBot",
+                "requestBody": {
+                    "description": "IP address to check, e.g. \"55.55.55.55\".  The input is a string so be sure to enclose it in double-quotes",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Result of the bot check on the IP address",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BotCheckResponse"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BotCheckResponse"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BotCheckResponse"
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BotCheckResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Apikey": []
+                    }
+                ],
+                "x-codegen-request-body-name": "value"
+            }
+        },
+        "/network/ip/is-tor-node": {
+            "post": {
+                "tags": [
+                    "NetworkThreatDetection"
+                ],
+                "summary": "Check if IP address is a Tor node server",
+                "description": "Check if the input IP address is a Tor exit node server.  Tor servers are a type of privacy-preserving technology that can hide the original IP address who makes a request.",
+                "operationId": "checkIpTorNode",
+                "requestBody": {
+                    "description": "IP address to check, e.g. \"55.55.55.55\".  The input is a string so be sure to enclose it in double-quotes",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Result of the Tor exit node check on the IP address",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TorNodeCheckResponse"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TorNodeCheckResponse"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TorNodeCheckResponse"
+                                }
+                            },
+                            "text/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TorNodeCheckResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Apikey": []
+                    }
+                ],
+                "x-codegen-request-body-name": "value"
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "SsrfDetectionRequest": {
+                "type": "object",
+                "properties": {
+                    "BlockedDomains": {
+                        "type": "array",
+                        "description": "Top level domains that you do not want to allow access to, e.g. mydomain.com - will block all subdomains as well",
+                        "items": {
+                            "type": "string"
+                        },
+                        "x-ballerina-name": "blockedDomains"
+                    },
+                    "AllowCidScheme": {
+                        "type": "boolean",
+                        "description": "Set to true to allow CID: schemes for inline content in emails; set to false otherwise.  Default is false",
+                        "x-ballerina-name": "allowCidScheme"
+                    },
+                    "URL": {
+                        "type": "string",
+                        "description": "URL to validate",
+                        "x-ballerina-name": "uRL"
+                    }
+                },
+                "description": "Request to determine if a URL is an SSRF threat check"
+            },
+            "BotCheckResponse": {
+                "type": "object",
+                "properties": {
+                    "IsBot": {
+                        "type": "boolean",
+                        "description": "True if the input IP address is a Bot or Robot, false otherwise",
+                        "x-ballerina-name": "isBot"
+                    }
+                },
+                "description": "Result of performing a Bot check on an IP address"
+            },
+            "InsecureDeserializationResult": {
+                "type": "object",
+                "properties": {
+                    "ContainedJsonInsecureDeserializationAttack": {
+                        "type": "boolean",
+                        "description": "True if the input contained Insecure Deserialization JSON, false otherwise",
+                        "x-ballerina-name": "containedJsonInsecureDeserializationAttack"
+                    },
+                    "Successful": {
+                        "type": "boolean",
+                        "description": "True if the operation was successful, false otherwise",
+                        "x-ballerina-name": "successful"
+                    },
+                    "OriginalInput": {
+                        "type": "string",
+                        "description": "Original input string",
+                        "x-ballerina-name": "originalInput"
+                    }
+                },
+                "description": "Result of performing an Insecure Deserialization JSON protection operation"
+            },
+            "AutomaticThreatDetectionResult": {
+                "type": "object",
+                "properties": {
+                    "ContainedSqlInjectionThreat": {
+                        "type": "boolean",
+                        "description": "True if the input contained SQL Injection attack, false otherwise",
+                        "x-ballerina-name": "containedSqlInjectionThreat"
+                    },
+                    "ContainedSsrfThreat": {
+                        "type": "boolean",
+                        "description": "True if the input contained an Server-Side Request Forgery (SSRF) URL attack, false otherwise",
+                        "x-ballerina-name": "containedSsrfThreat"
+                    },
+                    "IsXML": {
+                        "type": "boolean",
+                        "description": "True if the input string is XML, false otherwise",
+                        "x-ballerina-name": "isXML"
+                    },
+                    "ContainedXxeThreat": {
+                        "type": "boolean",
+                        "description": "True if the input contained XXE attack, false otherwise",
+                        "x-ballerina-name": "containedXxeThreat"
+                    },
+                    "ContainedJsonInsecureDeserializationAttack": {
+                        "type": "boolean",
+                        "description": "True if the input contained Insecure Deserialization JSON, false otherwise",
+                        "x-ballerina-name": "containedJsonInsecureDeserializationAttack"
+                    },
+                    "ContainedXssThreat": {
+                        "type": "boolean",
+                        "description": "True if the input contained XSS attack, false otherwise",
+                        "x-ballerina-name": "containedXssThreat"
+                    },
+                    "IsJSON": {
+                        "type": "boolean",
+                        "description": "True if the input string is JSON, false otherwise",
+                        "x-ballerina-name": "isJSON"
+                    },
+                    "Successful": {
+                        "type": "boolean",
+                        "description": "True if the operation was successful, false otherwise",
+                        "x-ballerina-name": "successful"
+                    },
+                    "CleanResult": {
+                        "type": "boolean",
+                        "description": "True if the input contained no detected threats, false otherwise",
+                        "x-ballerina-name": "cleanResult"
+                    },
+                    "OriginalInput": {
+                        "type": "string",
+                        "description": "Original input string",
+                        "x-ballerina-name": "originalInput"
+                    },
+                    "IsURL": {
+                        "type": "boolean",
+                        "description": "True if the input string is a URL, false otherwise",
+                        "x-ballerina-name": "isURL"
+                    }
+                },
+                "description": "Result of performing an Insecure Deserialization JSON protection operation"
+            },
+            "XxeDetectionResult": {
+                "type": "object",
+                "properties": {
+                    "Successful": {
+                        "type": "boolean",
+                        "description": "True if the operation was successful, false otherwise",
+                        "x-ballerina-name": "successful"
+                    },
+                    "ContainedXxe": {
+                        "type": "boolean",
+                        "description": "True if the input contained XXE threats, false otherwise",
+                        "x-ballerina-name": "containedXxe"
+                    }
+                },
+                "description": "Result of performing an XXE threat detection operation"
+            },
+            "TorNodeCheckResponse": {
+                "type": "object",
+                "properties": {
+                    "IsTorNode": {
+                        "type": "boolean",
+                        "description": "True if the input IP address is a Tor exit node, false otherwise",
+                        "x-ballerina-name": "isTorNode"
+                    }
+                },
+                "description": "Result of performing a Tor node check on an IP address"
+            },
+            "SsrfDetectionResponse": {
+                "type": "object",
+                "properties": {
+                    "ThreatLevel": {
+                        "type": "string",
+                        "description": "Threat level of the URL; possible values are High, Medium, Low and None",
+                        "x-ballerina-name": "threatLevel"
+                    },
+                    "CleanURL": {
+                        "type": "boolean",
+                        "description": "True if the URL is clean, false if it is at risk of containing an SSRF threat or attack",
+                        "x-ballerina-name": "cleanURL"
+                    }
+                },
+                "description": "Result of checking a URL for SSRF threats"
+            },
+            "IpThreatResponse": {
+                "type": "object",
+                "properties": {
+                    "ThreatType": {
+                        "type": "string",
+                        "description": "Specifies the type of IP threat; possible values include Blocklist, Botnet, WebBot",
+                        "x-ballerina-name": "threatType"
+                    },
+                    "IsThreat": {
+                        "type": "boolean",
+                        "description": "True if the input IP address is a threat, false otherwise",
+                        "x-ballerina-name": "isThreat"
+                    }
+                },
+                "description": "Result of performing a IP threat check on an IP address"
+            },
+            "XssProtectionResult": {
+                "type": "object",
+                "properties": {
+                    "NormalizedResult": {
+                        "type": "string",
+                        "description": "Normalized string result, with XSS removed",
+                        "x-ballerina-name": "normalizedResult"
+                    },
+                    "ContainedXss": {
+                        "type": "boolean",
+                        "description": "True if the input contained XSS scripting, false otherwise",
+                        "x-ballerina-name": "containedXss"
+                    },
+                    "Successful": {
+                        "type": "boolean",
+                        "description": "True if the operation was successful, false otherwise",
+                        "x-ballerina-name": "successful"
+                    },
+                    "OriginalInput": {
+                        "type": "string",
+                        "description": "Original input string",
+                        "x-ballerina-name": "originalInput"
+                    }
+                },
+                "description": "Result of performing an XSS protection operation"
+            },
+            "SqlInjectionResult": {
+                "type": "object",
+                "properties": {
+                    "ContainedSqlInjectionAttack": {
+                        "type": "boolean",
+                        "description": "True if the input contained SQL Injection attacks, false otherwise",
+                        "x-ballerina-name": "containedSqlInjectionAttack"
+                    },
+                    "Successful": {
+                        "type": "boolean",
+                        "description": "True if the operation was successful, false otherwise",
+                        "x-ballerina-name": "successful"
+                    },
+                    "OriginalInput": {
+                        "type": "string",
+                        "description": "Original input string",
+                        "x-ballerina-name": "originalInput"
+                    }
+                },
+                "description": "Result of performing an SQL Injection protection operation"
+            }
+        },
+        "securitySchemes": {
+            "Apikey": {
+                "type": "apiKey",
+                "description": "API Key Authentication",
+                "name": "Apikey",
+                "in": "header",
+                "x-ballerina-name": "apikey"
+            }
+        }
+    },
+    "x-original-swagger-version": "2.0"
+}
